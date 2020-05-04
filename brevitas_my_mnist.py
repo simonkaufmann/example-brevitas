@@ -3,6 +3,8 @@ import torch.nn as nn
 import torch.optim as optim
 import brevitas.nn as qnn
 from torchvision import datasets, transforms
+from brevitas.core.quant import QuantType
+
 
 epochs = 20
 
@@ -15,7 +17,7 @@ test_batch_size = 1000
 class Net(nn.Module):
     def __init__(self):
         super(Net, self).__init__()
-        self.layer = qnn.QuantLinear(120, 84, bias=True,
+        self.layer = qnn.QuantLinear(784, 10, bias=True,
                                      weight_quant_type=QuantType.INT,
                                      weight_bit_width=8)
 
